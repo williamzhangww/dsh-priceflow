@@ -1,0 +1,15 @@
+{
+  "fixtureType": "curated-real-dom-regression-fixture",
+  "sourceUrl": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "requestedUrl": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "finalUrl": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "capturedAt": "2026-09-27T12:11:28.144Z",
+  "httpStatus": 200,
+  "contentType": "text/html",
+  "etag": "\"20be8baf3684a937d04325535534386c\"",
+  "lastModified": "Thu, 24 Sep 2026 09:35:27 GMT",
+  "rawResponseBytes": 23982,
+  "rawContentHash": "sha256:210f102275ccf1a6542f08a3bc9e4b4c7c83278cb74b35217bffa112df6363b2",
+  "curatedFixtureContentHash": "sha256:f2417c9e83abe8f4846faced5e90cb587d41e1edc7ead3e1a59d372d81f695a3",
+  "notes": "Curated from an actual response read inside the isolated DSH Electron host. Contains the original Models & Pricing heading, introductory unit paragraph, single rowspan pricing/model table, and official schedule/holiday footnote; unrelated scripts and site chrome removed. Test fixture only; runtime always fetches the official URL."
+}

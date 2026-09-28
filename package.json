@@ -1,0 +1,41 @@
+{
+  "name": "dsh-priceflow",
+  "version": "0.2.0",
+  "description": "Official DeepSeek pricing and off-peak message scheduling for DeepSeek Harness.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/williamzhangww/dsh-priceflow.git"
+  },
+  "homepage": "https://github.com/williamzhangww/dsh-priceflow#readme",
+  "bugs": {
+    "url": "https://github.com/williamzhangww/dsh-priceflow/issues"
+  },
+  "license": "MIT",
+  "keywords": ["dsh", "dsh-plugin", "deepseek", "deepseek-harness", "pricing", "off-peak", "scheduling", "queue"],
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./host": "./src/host/service.mjs",
+    "./client": { "default": "./client/client.js" }
+  },
+  "files": ["index.js", "client/", "cordis.patch.yml", "src/", "README.md", "README.zh-CN.md", "LICENSE", "CHANGELOG.md", "SECURITY.md", "CONTRIBUTING.md"],
+  "engines": { "node": ">=20" },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2",
+    "@deepseek-ai/dsh": "0.2.0-rc.1"
+  },
+  "dsh": {
+    "engines": { "dsh": ">=0.1.1-rc.1" },
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "inject": ["@deepseek-ai/dsh-client-ui-conversation"]
+    }
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check index.js && node --check client/client.js && node --check src/host/service.mjs && node --check src/host/routes.mjs && node --check src/host/lifecycle.mjs && node --check src/queue/scheduler.mjs && node --check src/delivery/dsh-delivery-adapter.mjs && node --check src/pricing/engine.mjs && node --check src/pricing/fetcher.mjs && node --check src/pricing/refresh-service.mjs && node --check src/queue/service.mjs",
+    "verify": "npm run check && npm test"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "url": "https://api-docs.deepseek.com/quick_start/pricing/",
+    "requestedUrl": "https://api-docs.deepseek.com/quick_start/pricing/",
+    "finalUrl": "https://api-docs.deepseek.com/quick_start/pricing/",
+    "fetchedAt": null,
+    "capturedAt": "2026-09-27",
+    "contentHash": null,
+    "parserVersion": 1,
+    "etag": null,
+    "lastModified": null,
+    "provenance": "bundled-development-fixture"
+  },
+  "currency": "USD",
+  "unit": "per_1m_tokens",
+  "schedule": {
+    "timeBasis": "UTC",
+    "weekdays": [1, 2, 3, 4, 5],
+    "peakWindows": [
+      { "startMinute": 60, "endMinute": 240 },
+      { "startMinute": 360, "endMinute": 600 }
+    ],
+    "offpeakRelation": { "kind": "ratio", "offpeakPerPeak": 0.5 },
+    "exclusions": [
+      { "kind": "public-holiday-calendar", "jurisdiction": "CN", "calendarTimeZone": "Asia/Shanghai", "calendarId": "cn-public-holidays" }
+    ]
+  },
+  "models": {
+    "deepseek-flash": {
+      "displayName": "DeepSeek-V4.1-Flash",
+      "peak": { "cacheHitInput": 0.006, "cacheMissInput": 0.3, "output": 1.2 },
+      "offpeak": { "cacheHitInput": 0.003, "cacheMissInput": 0.15, "output": 0.6 }
+    },
+    "deepseek-v4-pro": {
+      "displayName": "DeepSeek-V4-Pro-0813",
+      "peak": { "cacheHitInput": 0.044, "cacheMissInput": 1.32, "output": 3.96 },
+      "offpeak": { "cacheHitInput": 0.022, "cacheMissInput": 0.66, "output": 1.98 }
+    }
+  }
+}
