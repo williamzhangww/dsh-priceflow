@@ -13,9 +13,9 @@ PEAK 期间可以将文本消息排入低谷队列。OFF-PEAK 期间，普通发
 ## 环境要求
 
 - Node.js 20 或更新版本
-- DeepSeek Harness `0.2.0-rc.1`
+- DeepSeek Harness `0.2.0-rc.1` 或 `0.2.0-rc.2`
 
-目前只针对 DSH `0.2.0-rc.1` 完成验证。
+已分别针对 DSH `0.2.0-rc.1` 与 `0.2.0-rc.2` 完成验证。
 
 ## 安装
 
@@ -25,7 +25,7 @@ PEAK 期间可以将文本消息排入低谷队列。OFF-PEAK 期间，普通发
 dsh plugin --profile <profile> add dsh-priceflow
 ```
 
-将 `<profile>` 替换为 DSH profile 名称。DSH `0.2.0-rc.1` 插件管理器已接受打包后的 `dsh-priceflow` tarball，无需版本豁免。如果所用 DSH Desktop 版本提供应用内 Plugins 页面，可通过该页面将包安装到 Desktop profile。
+将 `<profile>` 替换为 DSH profile 名称。DSH `0.2.0-rc.1` 与 `0.2.0-rc.2` 插件管理器均可接受打包后的 `dsh-priceflow` tarball，无需版本豁免。如果所用 DSH Desktop 版本提供应用内 Plugins 页面，可通过该页面将包安装到 Desktop profile。
 
 ## 功能说明
 
@@ -67,7 +67,7 @@ DSH 凭据可用时，PriceFlow 可以请求 DeepSeek 官方余额接口。余�
 
 ## 限制
 
-- 目前只针对 DSH `0.2.0-rc.1` 完成验证。
+- 兼容范围有意限定为已分别验证的 DSH `0.2.0-rc.1` 与 `0.2.0-rc.2`。
 - 延迟队列只支持文本，不支持附件。
 - 自动调度需要已验证的价格策略。
 - 节假日日历覆盖不足时，自动调度可能会按设计关闭。

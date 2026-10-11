@@ -13,9 +13,9 @@ During PEAK, you can queue a text message for OFF-PEAK delivery. During OFF-PEAK
 ## Requirements
 
 - Node.js 20 or newer
-- DeepSeek Harness `0.2.0-rc.1`
+- DeepSeek Harness `0.2.0-rc.1` or `0.2.0-rc.2`
 
-PriceFlow has currently been tested against DSH `0.2.0-rc.1` only.
+PriceFlow has been tested independently against DSH `0.2.0-rc.1` and `0.2.0-rc.2`.
 
 ## Installation
 
@@ -25,7 +25,7 @@ In a terminal, add the npm package to the profile where you want PriceFlow insta
 dsh plugin --profile <profile> add dsh-priceflow
 ```
 
-Replace `<profile>` with the DSH profile name. The DSH `0.2.0-rc.1` plugin manager accepted the packaged `dsh-priceflow` tarball without a version exemption. In DSH Desktop builds that expose an in-app Plugins page, use that page to install the package into the Desktop profile.
+Replace `<profile>` with the DSH profile name. The DSH `0.2.0-rc.1` and `0.2.0-rc.2` plugin managers accept the packaged `dsh-priceflow` tarball without a version exemption. In DSH Desktop builds that expose an in-app Plugins page, use that page to install the package into the Desktop profile.
 
 ## Features
 
@@ -67,7 +67,7 @@ The balance API key is resolved and used on the Host side; PriceFlow does not se
 
 ## Limitations
 
-- Currently tested against DSH `0.2.0-rc.1` only.
+- Compatibility is intentionally limited to the independently verified DSH versions `0.2.0-rc.1` and `0.2.0-rc.2`.
 - Delayed queue sends support text only; attachments are not supported.
 - Automatic scheduling requires a verified pricing policy.
 - Missing holiday-calendar coverage may intentionally disable automatic scheduling.
