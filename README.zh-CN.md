@@ -13,9 +13,9 @@ PEAK 期间可以将文本消息排入低谷队列。OFF-PEAK 期间，普通发
 ## 环境要求
 
 - Node.js 20 或更新版本
-- DeepSeek Harness `0.2.0-rc.1` 或 `0.2.0-rc.2`
+- DeepSeek Harness `>=0.2.0-rc.1 <0.3.0-0`（包含 prerelease）
 
-已分别针对 DSH `0.2.0-rc.1` 与 `0.2.0-rc.2` 完成验证。
+已针对 DSH `0.2.0-rc.1` 和 `0.2.0-rc.2` 完成验证。版本范围允许后续 `0.2.x` 通过元数据兼容检查，但这些未来版本尚未逐一验证 API；Host 或 Client API 变化仍可能需要发布插件修复。
 
 ## 安装
 
@@ -25,7 +25,7 @@ PEAK 期间可以将文本消息排入低谷队列。OFF-PEAK 期间，普通发
 dsh plugin --profile <profile> add dsh-priceflow
 ```
 
-将 `<profile>` 替换为 DSH profile 名称。DSH `0.2.0-rc.1` 与 `0.2.0-rc.2` 插件管理器均可接受打包后的 `dsh-priceflow` tarball，无需版本豁免。如果所用 DSH Desktop 版本提供应用内 Plugins 页面，可通过该页面将包安装到 Desktop profile。
+将 `<profile>` 替换为 DSH profile 名称。声明的 DSH 版本范围上界为 `0.3.0-0`，不使用版本豁免。如果所用 DSH Desktop 版本提供应用内 Plugins 页面，可通过该页面将包安装到 Desktop profile。
 
 ## 功能说明
 
@@ -39,7 +39,7 @@ USD 价格来自 DeepSeek 官方价格页面；CNY 价格来自 DeepSeek 官方�
 
 ### 低谷队列
 
-PEAK 期间，PriceFlow 可以将文本排队，等待 OFF-PEAK 投递。OFF-PEAK 期间，普通发送遵循 DSH 原有流程。延迟队列只支持文本，不支持附件。队列会持久化，以便 Host 重启后恢复。投递采用持久化的至少一次（at-least-once）架构，中断后可能再次尝试。`submitted` 表示 DSH 已接受提交，不表示模型已经完成回复。
+PEAK 期间，PriceFlow 可以将文本排队，等待 OFF-PEAK 投递。OFF-PEAK 期间，普通发送遵循 DSH 原有流程。延迟队列只支持文本，不支持附件。队列会持久化，以便 Host 重启后恢复。投递采用持久化的至少一次（at-least-once）架构，发送 API 缺失、调用报错或响应不满足明确的 `accepted: true` 契约时会拒绝确认，队列消息会保留且不会标为 `submitted`。可重试错误采用有上限的退避和有限尝试次数。`submitted` 表示 DSH 已接受提交，不表示模型已经完成回复。投递仍是 at-least-once，而非 exactly-once；请求中断时结果可能不确定。
 
 ### 定价可信状态
 

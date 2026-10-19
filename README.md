@@ -13,9 +13,9 @@ During PEAK, you can queue a text message for OFF-PEAK delivery. During OFF-PEAK
 ## Requirements
 
 - Node.js 20 or newer
-- DeepSeek Harness `0.2.0-rc.1` or `0.2.0-rc.2`
+- DeepSeek Harness `>=0.2.0-rc.1 <0.3.0-0` (DSH prereleases included)
 
-PriceFlow has been tested independently against DSH `0.2.0-rc.1` and `0.2.0-rc.2`.
+PriceFlow has been tested against DSH `0.2.0-rc.1` and `0.2.0-rc.2`. Future `0.2.x` versions are admitted by the range but are not individually API-verified; Host or Client API changes may require a plugin fix.
 
 ## Installation
 
@@ -25,7 +25,7 @@ In a terminal, add the npm package to the profile where you want PriceFlow insta
 dsh plugin --profile <profile> add dsh-priceflow
 ```
 
-Replace `<profile>` with the DSH profile name. The DSH `0.2.0-rc.1` and `0.2.0-rc.2` plugin managers accept the packaged `dsh-priceflow` tarball without a version exemption. In DSH Desktop builds that expose an in-app Plugins page, use that page to install the package into the Desktop profile.
+Replace `<profile>` with the DSH profile name. The declared DSH range is bounded below `0.3.0`; no version exemption is used. In DSH Desktop builds that expose an in-app Plugins page, use that page to install the package into the Desktop profile.
 
 ## Features
 
@@ -39,7 +39,7 @@ USD prices come from DeepSeek's official pricing page. CNY prices come from Deep
 
 ### Off-peak queue
 
-During PEAK, the PriceFlow action can queue text for OFF-PEAK delivery. During OFF-PEAK, ordinary DSH sends follow the normal DSH flow. Delayed queue sends are text-only; attachments are not supported. Queue data survives Host restarts. Delivery uses a durable at-least-once architecture, so a message may be attempted again after an interrupted delivery. A `submitted` status means DSH accepted the submission; it does not mean the model completed its response.
+During PEAK, the PriceFlow action can queue text for OFF-PEAK delivery. During OFF-PEAK, ordinary DSH sends follow the normal DSH flow. Delayed queue sends are text-only; attachments are not supported. Queue data survives Host restarts. Delivery uses a durable at-least-once architecture, so a message may be attempted again after an interrupted delivery. A missing send API, an API error, or a response without the explicit `accepted: true` contract is rejected; the queued message is retained and is never marked submitted on that basis. Retryable failures use capped backoff and a finite attempt limit. A `submitted` status means DSH accepted the submission; it does not mean the model completed its response. Delivery remains at-least-once, not exactly-once, so an interrupted request may have an uncertain outcome.
 
 ### Pricing trust
 

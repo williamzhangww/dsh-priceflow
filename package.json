@@ -1,6 +1,6 @@
 {
   "name": "dsh-priceflow",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Official DeepSeek pricing and off-peak message scheduling for DeepSeek Harness.",
   "repository": {
     "type": "git",
@@ -20,13 +20,11 @@
     "./client": { "default": "./client/client.js" }
   },
   "files": ["index.js", "client/", "cordis.patch.yml", "src/", "README.md", "README.zh-CN.md", "LICENSE", "CHANGELOG.md", "SECURITY.md", "CONTRIBUTING.md"],
-  "engines": { "node": ">=20" },
+  "engines": { "node": ">=20", "dsh": ">=0.2.0-rc.1 <0.3.0-0" },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "^4.0.2",
-    "@deepseek-ai/dsh": "0.2.0-rc.1 || 0.2.0-rc.2"
+    "@deepseek-ai/cordis": "^4.0.2"
   },
   "dsh": {
-    "engines": { "dsh": "0.2.0-rc.1 || 0.2.0-rc.2" },
     "bundle": { "patch": "./cordis.patch.yml" },
     "client": {
       "platform": "web",

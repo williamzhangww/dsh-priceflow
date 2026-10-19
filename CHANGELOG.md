@@ -2,6 +2,17 @@
 
 All notable changes to dsh-priceflow are documented here.
 
+## [0.2.2] - 2026-10-19
+
+### Compatibility
+
+- Declare bounded DSH support `>=0.2.0-rc.1 <0.3.0-0` in top-level `engines.dsh`.
+- Remove the exact `@deepseek-ai/dsh` peer and redundant nested engine; retain the Cordis peer.
+- DSH `0.2.0-rc.1` and `0.2.0-rc.2` were previously verified. Future `0.2.x` releases are admitted by the range but are not individually API-verified.
+
+### Safety
+
+- Unsupported send APIs or responses without explicit acceptance remain fail-closed; queued messages are retained. Delivery stays at-least-once with capped retries, not exactly-once.
 ## [0.2.1] - 2026-10-11
 
 ### Fixed

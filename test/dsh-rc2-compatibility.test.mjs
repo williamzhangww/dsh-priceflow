@@ -3,14 +3,16 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import * as plugin from '../index.js'
 
-test('package metadata admits only the independently verified DSH prereleases', async () => {
+test('package metadata declares bounded DSH 0.2.x compatibility without a lockstep host peer', async () => {
   const manifest = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'))
-  const verified = '0.2.0-rc.1 || 0.2.0-rc.2'
-  assert.equal(manifest.version, '0.2.1')
-  assert.equal(manifest.peerDependencies['@deepseek-ai/dsh'], verified)
-  assert.equal(manifest.dsh.engines.dsh, verified)
+  assert.equal(manifest.version, '0.2.2')
+  assert.equal(manifest.engines.node, '>=20')
+  assert.equal(manifest.engines.dsh, '>=0.2.0-rc.1 <0.3.0-0')
+  assert.equal(manifest.peerDependencies['@deepseek-ai/dsh'], undefined)
   assert.equal(manifest.peerDependencies['@deepseek-ai/cordis'], '^4.0.2')
-  assert.doesNotMatch(verified, /\*|>=|0\.2\.1|0\.2\.0(?:\s|$)/)
+  assert.equal(manifest.dsh.engines?.dsh, undefined)
+  assert.equal(manifest.dsh.bundle.patch, './cordis.patch.yml')
+  assert.deepEqual(manifest.dsh.client, { platform: 'web', inject: ['@deepseek-ai/dsh-client-ui-conversation'] })
 })
 
 test('rc.2 Cordis injection surface registers Host routes without starting a real queue', () => {
